@@ -15,10 +15,9 @@ class Checksum
 
     def value(type)
       return @data.last - @data.first if type == :default
-
       @data.map do |current_number|
         next unless !current_number.prime?
-        divisible = @data.detect { |number| (current_number > number) && (current_number % number == 0) }
+        divisible = @data.detect { |number| (current_number != number) && (current_number % number == 0) }
         return current_number / divisible if divisible
       end
     end
